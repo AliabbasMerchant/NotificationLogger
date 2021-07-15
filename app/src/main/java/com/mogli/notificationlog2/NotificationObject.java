@@ -8,12 +8,8 @@ import android.service.notification.StatusBarNotification;
 import androidx.core.app.NotificationCompat;
 
 class NotificationObject {
-    private final Context context;
-    private final Notification notification;
-
     private final String packageName;
     private final long postTime;
-    private final long systemTime;
     private final boolean isOngoing;
 
     private final long when;
@@ -23,13 +19,10 @@ class NotificationObject {
     private String extraText;
     private String textBig;
 
-
     public NotificationObject(StatusBarNotification sbn, Context context) {
-        this.context = context;
-        notification = sbn.getNotification();
+        Notification notification = sbn.getNotification();
         packageName = sbn.getPackageName();
         postTime = sbn.getPostTime();
-        systemTime = System.currentTimeMillis();
         isOngoing = sbn.isOngoing();
         when = notification.when;
 
@@ -42,10 +35,6 @@ class NotificationObject {
             extraText = Utils.nullToEmptyString(extras.getCharSequence(Notification.EXTRA_SUB_TEXT));
             textBig = Utils.nullToEmptyString(extras.getCharSequence(NotificationCompat.EXTRA_BIG_TEXT));
 
-//            Log.v("NotifObject","title :" + title +"\n"
-//                     + "text :" + text + "\n"
-//            +"extraText: " + extraText + "\n"
-//            +"textBig: " + textBig);
             int textlen = text.length();
             if (extraText.length() != 0)
                 text += "\n" + extraText;
@@ -57,8 +46,8 @@ class NotificationObject {
         }
     }
 
-    public long getSystemTime() {
-        return systemTime;
+    public long getPostTime() {
+        return postTime;
     }
 
     public String getAppName() {

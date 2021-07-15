@@ -18,19 +18,17 @@ public class NotificationHandler {
     }
 
     void handlePosted(StatusBarNotification sbn) {
-//        if(sbn.isOngoing()){
-//            return;
-//        }
+        Log.d(TAG, sbn.toString());
         NotificationObject no = new NotificationObject(sbn, context);
         if (no.getText().length() == 0)
             return;
         String appName = no.getAppName();
         String title = no.getTitle();
         String text = no.getText();
-        long timeInMillis = no.getSystemTime();
+        long timeInMillis = no.getPostTime();
         String packageName = no.getPackageName();
-        String[] selectionArgs = new String[]{appName, text, title, String.valueOf(timeInMillis), packageName};
-        String selection = "name = ? AND text = ? AND title = ? AND timeinmilli = ? AND packagename = ?";
+        String[] selectionArgs = new String[]{appName, title, text, String.valueOf(timeInMillis), packageName};
+        String selection = "name = ? AND title = ? AND text = ? AND timeinmilli = ? AND packagename = ?";
         String[] projection = {
                 NotificationsContract.NotifEntry._ID,
                 NotificationsContract.NotifEntry.COLUMN_NOTIF_APP_NAME,

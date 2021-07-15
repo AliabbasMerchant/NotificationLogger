@@ -52,8 +52,6 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
         View emptyView = findViewById(R.id.empty_subtitle_text);
         listView.setEmptyView(emptyView);
 
-//        ComponentName componentName =
-//                new ComponentName(getApplicationContext(), NotificationListener.class);
         listView.setAdapter(notifCursorAdaptor);
         registerForContextMenu(listView);
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -89,7 +87,7 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
         String where = " timeinmilli < ? ";
         String[] selectionArgs = new String[]{Long.toString(timeBefore30days)};
         int rowsDeleted = getContentResolver().delete(NotificationsContract.NotifEntry.CONTENT_URI, where, selectionArgs);
-//        Log.v("deted : ", "" + rowsDeleted);
+//        Log.v("deleted : ", "" + rowsDeleted);
     }
 
     private void doNotKillService() {

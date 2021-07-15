@@ -12,14 +12,8 @@ public class NotificationListener extends NotificationListenerService {
 
     @Override
     public void onNotificationPosted(StatusBarNotification sbn) {
-        Log.i(TAG, "ID:" + sbn.getId());
-        Log.i(TAG, "Posted by:" + sbn.getPackageName());
-        try {
-            NotificationHandler notificationHandler = new NotificationHandler(this);
-            notificationHandler.handlePosted(sbn);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+        NotificationHandler notificationHandler = new NotificationHandler(this);
+        notificationHandler.handlePosted(sbn);
     }
 
     @Override
