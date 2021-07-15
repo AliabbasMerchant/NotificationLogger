@@ -19,7 +19,6 @@ public class NotifDbHelper extends SQLiteOpenHelper {
                 + NotificationsContract.NotifEntry._ID + " INTEGER PRIMARY KEY AUTOINCREMENT, "
                 + NotificationsContract.NotifEntry.COLUMN_NOTIF_TEXT + " TEXT, "
                 + NotificationsContract.NotifEntry.COLUMN_NOTIF_TITLE + " TEXT , "
-                + NotificationsContract.NotifEntry.COLUMN_NOTIF_PACKAGE_NAME + " TEXT , "
                 + NotificationsContract.NotifEntry.COLUMN_NOTIF_POST_TIME + " INTEGER );";
 
         db.execSQL(SQL_CREATE_NOTIF_TABLE);

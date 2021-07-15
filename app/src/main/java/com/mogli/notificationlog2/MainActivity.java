@@ -125,7 +125,6 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
                 NotificationsContract.NotifEntry._ID,
                 NotificationsContract.NotifEntry.COLUMN_NOTIF_TITLE,
                 NotificationsContract.NotifEntry.COLUMN_NOTIF_TEXT,
-                NotificationsContract.NotifEntry.COLUMN_NOTIF_PACKAGE_NAME,
                 NotificationsContract.NotifEntry.COLUMN_NOTIF_POST_TIME
         };
         return new CursorLoader(this, NotificationsContract.NotifEntry.CONTENT_URI, projection, null, null, NotificationsContract.NotifEntry._ID + " DESC");

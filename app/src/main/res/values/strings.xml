@@ -1,6 +1,6 @@
 <resources>
-    <string name="app_name">LoGGeD</string>
-    <string name="service_name">NotificationLOG2</string>
+    <string name="app_name">WhatsApp Messages Logger</string>
+    <string name="service_name">WhatsApp Messages Logger</string>
     <string name="title_activity_settings">Settings</string>
 
     <string name="deleted_all_successfully">All notifications deleted successfully</string>

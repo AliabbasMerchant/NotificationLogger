@@ -34,7 +34,6 @@ public final class NotificationsContract {
 
         public final static String COLUMN_NOTIF_TEXT = "text";
         public final static String COLUMN_NOTIF_TITLE = "title";
-        public final static String COLUMN_NOTIF_PACKAGE_NAME = "packageName";
         public final static String COLUMN_NOTIF_POST_TIME = "postTime";
     }
 

@@ -6,48 +6,26 @@
     android:background="?android:selectableItemBackground"
     android:padding="8dp">
 
-    <ImageView
-        android:id="@+id/appIcon"
-        android:layout_width="48dp"
-        android:layout_height="40dp"
-        android:contentDescription="Icon"
-        android:src="@mipmap/ic_launcher"
-        android:transitionName="icon"
-        android:paddingRight="8dp"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <TextView
-        android:id="@+id/app_name"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:text="name"
-        android:textColor="@color/colorText"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintLeft_toRightOf="@id/appIcon"
-        android:textSize="16sp" />
-
-    <TextView
-        android:id="@+id/datetime"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_weight="1"
-        android:text="datetime"
-        android:textColor="@color/colorTextMuted"
-        app:layout_constraintTop_toTopOf="@id/app_name"
-        app:layout_constraintRight_toRightOf="parent"
-        android:textSize="14sp" />
-
     <TextView
         android:id="@+id/title"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:text="title"
         android:textColor="@color/colorTextMuted"
-        app:layout_constraintTop_toBottomOf="@id/app_name"
-        app:layout_constraintLeft_toLeftOf="@id/app_name"
-        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toLeftOf="@id/datetime"
         android:textSize="16sp" />
+
+    <TextView
+        android:id="@+id/datetime"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="datetime"
+        android:textColor="@color/colorTextMuted"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        android:textSize="14sp" />
 
     <TextView
         android:id="@+id/text"
