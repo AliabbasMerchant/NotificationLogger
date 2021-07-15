@@ -16,6 +16,7 @@ import android.database.Cursor;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.Settings;
+import android.util.Log;
 import android.view.ContextMenu;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -31,6 +32,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.preference.PreferenceManager;
 
 public class MainActivity extends AppCompatActivity implements LoaderManager.LoaderCallbacks<Cursor>, SharedPreferences.OnSharedPreferenceChangeListener {
+    private static final String TAG = "MainActivity";
 
     private static final int NOTIF_LOADER = 1;
     private NotifCursorAdaptor notifCursorAdaptor;
@@ -54,17 +56,13 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
 
         listView.setAdapter(notifCursorAdaptor);
         registerForContextMenu(listView);
-        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                String click = "clicked :" + id;
-//                Log.v("MainActivity","itemClicked" + id);
-                TextView text = findViewById(R.id.app_text);
-                if (text.getMaxLines() == 3)
-                    text.setMaxLines(50);
-                else
-                    text.setMaxLines(3);
-            }
+        listView.setOnItemClickListener((parent, view, position, id) -> {
+            TextView text = view.findViewById(R.id.app_text);
+            Log.e(TAG, "text: " + text.getText().toString());
+            if (text.getMaxLines() == 3)
+                text.setMaxLines(Integer.MAX_VALUE);
+            else
+                text.setMaxLines(3);
         });
 
         getLoaderManager().initLoader(NOTIF_LOADER, null, this);
