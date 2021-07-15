@@ -15,7 +15,6 @@ import android.database.Cursor;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.Settings;
-import android.util.Log;
 import android.view.ContextMenu;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -69,7 +68,7 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
     private void getNotifPreferences() {
         SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(this);
 
-        String deleteAfter = preferences.getString("deletenotifafter", getResources().getString(R.string.pref_value_one_week));
+        String deleteAfter = preferences.getString("deletenotifafter", getResources().getString(R.string.pref_value_two_days));
         int deleteAfterInt = Integer.parseInt(deleteAfter);
         doDeleteNotifOlderThanXdays(deleteAfterInt);
         preferences.registerOnSharedPreferenceChangeListener(this);
@@ -172,7 +171,7 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
                         int rowsDeleted = getContentResolver().delete(NotificationsContract.NotifEntry.CONTENT_URI, null, null);
                         dialog.cancel();
                         if (rowsDeleted > 0)
-                            Toast.makeText(getApplicationContext(), R.string.delted_all_successfully, Toast.LENGTH_SHORT).show();
+                            Toast.makeText(getApplicationContext(), R.string.deleted_all_successfully, Toast.LENGTH_SHORT).show();
                     }
                 })
                 .setNegativeButton("No", new DialogInterface.OnClickListener() {

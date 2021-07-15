@@ -20,7 +20,7 @@
     <PreferenceCategory android:title="Delete Notifications automatically"
         android:key="pref_category">
         <ListPreference
-            app:defaultValue="@string/pref_value_one_week"
+            app:defaultValue="@string/pref_value_two_days"
             app:entries="@array/pref_time_labels"
             app:entryValues="@array/pref_time_values"
             app:key="deletenotifafter"

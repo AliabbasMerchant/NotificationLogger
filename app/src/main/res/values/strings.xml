@@ -1,38 +1,21 @@
 <resources>
     <string name="app_name">LoGGeD</string>
     <string name="service_name">NotificationLOG2</string>
-    <string name="empty_view_title_text">It\'s a bit lonely in Here....</string>
-    <string name="empty_view_subtitle_text">Waiting for an Notification...</string>
     <string name="title_activity_settings">Settings</string>
 
-    <!-- Preference Titles -->
-    <string name="messages_header">Messages</string>
-    <string name="sync_header">Sync</string>
+    <string name="deleted_all_successfully">All notifications deleted successfully</string>
 
-    <!-- Messages Preferences -->
-    <string name="signature_title">Your signature</string>
-    <string name="reply_title">Default reply action</string>
-
-    <!-- Sync Preferences -->
-    <string name="sync_title">Sync email periodically</string>
-    <string name="attachment_title">Download incoming attachments</string>
-    <string name="attachment_summary_on">Automatically download attachments for incoming emails
-    </string>
-    <string name="attachment_summary_off">Only download attachments when manually requested</string>
-
-    <string name="delted_all_successfully">All notification deleted successfully</string>
-
-    <string name="pref_one_hour">  1 hour</string>
-    <string name="pref_two_hour">  2 hours</string>
-    <string name="pref_four_hours">  4 hours</string>
-    <string name="pref_eight_hours">  8 hours</string>
+    <string name="pref_one_hour">1 hour</string>
+    <string name="pref_two_hour">2 hours</string>
+    <string name="pref_four_hours">4 hours</string>
+    <string name="pref_eight_hours">8 hours</string>
     <string name="pref_sixteen_hours">16 hours</string>
-    <string name="pref_one_day">   1 day</string>
-    <string name="pref_two_days">   2 days</string>
-    <string name="pref_four_days">   4 days</string>
-    <string name="pref_one_week">   One week</string>
-    <string name="pref_two_weeks">   Two weeks</string>
-    <string name="pref_one_month">   One month</string>
+    <string name="pref_one_day">1 day</string>
+    <string name="pref_two_days">2 days</string>
+    <string name="pref_four_days">4 days</string>
+    <string name="pref_one_week">One week</string>
+    <string name="pref_two_weeks">Two weeks</string>
+    <string name="pref_one_month">One month</string>
 
     <string name="pref_value_one_hour">1</string>
     <string name="pref_value_two_hour">2</string>
