@@ -32,13 +32,10 @@ public final class NotificationsContract {
 
         public final static String _ID = BaseColumns._ID;
 
-        public final static String COLUMN_NOTIF_APP_NAME = "name";
-
-        public final static String COLUMN_NOTIF_APP_DATA_TEXT = "text";
-
-        public final static String COLUMN_NOTIF_APP_DATA_TITLE = "title";
-        public final static String COLUMN_NOTIF_APP_DATA_PACKAGE_NAME = "packagename";
-        public final static String COLUMN_NOTIF_APP_TIME_IN_MILLI = "timeinmilli";
+        public final static String COLUMN_NOTIF_TEXT = "text";
+        public final static String COLUMN_NOTIF_TITLE = "title";
+        public final static String COLUMN_NOTIF_PACKAGE_NAME = "packageName";
+        public final static String COLUMN_NOTIF_POST_TIME = "postTime";
     }
 
 }

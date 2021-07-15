@@ -29,29 +29,29 @@ public class NotifCursorAdaptor extends CursorAdapter {
 
     @Override
     public void bindView(View view, Context context, Cursor cursor) {
-        TextView appName = view.findViewById(R.id.app_name);
-        TextView datetime = view.findViewById(R.id.datetime);
-        TextView appTitle = view.findViewById(R.id.app_title);
-        TextView appText = view.findViewById(R.id.app_text);
+        TextView appNameTV = view.findViewById(R.id.app_name);
+        TextView datetimeTV = view.findViewById(R.id.datetime);
+        TextView titleTV = view.findViewById(R.id.title);
+        TextView textTV = view.findViewById(R.id.text);
         ImageView imageView = view.findViewById(R.id.appIcon);
 
-        int appNameColumnIndex = cursor.getColumnIndex(NotificationsContract.NotifEntry.COLUMN_NOTIF_APP_NAME);
-        int appTimeColumnIndex = cursor.getColumnIndex(NotificationsContract.NotifEntry.COLUMN_NOTIF_APP_TIME_IN_MILLI);
-        int appTitleColumnIndex = cursor.getColumnIndex(NotificationsContract.NotifEntry.COLUMN_NOTIF_APP_DATA_TITLE);
-        int appTextColumnIndex = cursor.getColumnIndex(NotificationsContract.NotifEntry.COLUMN_NOTIF_APP_DATA_TEXT);
-        int appPackageNameColumnIndex = cursor.getColumnIndex(NotificationsContract.NotifEntry.COLUMN_NOTIF_APP_DATA_PACKAGE_NAME);
+        int packageNameColumnIndex = cursor.getColumnIndex(NotificationsContract.NotifEntry.COLUMN_NOTIF_PACKAGE_NAME);
+        int titleColumnIndex = cursor.getColumnIndex(NotificationsContract.NotifEntry.COLUMN_NOTIF_TITLE);
+        int postTimeColumnIndex = cursor.getColumnIndex(NotificationsContract.NotifEntry.COLUMN_NOTIF_POST_TIME);
+        int textColumnIndex = cursor.getColumnIndex(NotificationsContract.NotifEntry.COLUMN_NOTIF_TEXT);
 
-        String appPackageName = cursor.getString(appPackageNameColumnIndex);
+        String packageName = cursor.getString(packageNameColumnIndex);
+        String appName = Utils.getAppNameFromPackage(context, packageName, false);
+        appNameTV.setText(appName);
         try {
-            Drawable icon = context.getPackageManager().getApplicationIcon(appPackageName);
+            Drawable icon = context.getPackageManager().getApplicationIcon(packageName);
             imageView.setImageDrawable(icon);
         } catch (PackageManager.NameNotFoundException e) {
             e.printStackTrace();
         }
 
-        appName.setText(cursor.getString(appNameColumnIndex));
-        datetime.setText(Utils.getDateTime(cursor.getLong(appTimeColumnIndex)));
-        appTitle.setText(cursor.getString(appTitleColumnIndex));
-        appText.setText(cursor.getString(appTextColumnIndex));
+        datetimeTV.setText(Utils.getDateTime(cursor.getLong(postTimeColumnIndex)));
+        titleTV.setText(cursor.getString(titleColumnIndex));
+        textTV.setText(cursor.getString(textColumnIndex));
     }
 }

@@ -13,7 +13,6 @@ class NotificationObject {
     private final boolean isOngoing;
 
     private final long when;
-    private final String appName;
     private String title;
     private String text;
     private String extraText;
@@ -27,7 +26,6 @@ class NotificationObject {
         when = notification.when;
 
         Bundle extras = NotificationCompat.getExtras(notification);
-        appName = Utils.getAppNameFromPackage(context, packageName, false);
 
         if (extras != null) {
             title = Utils.nullToEmptyString(extras.getCharSequence(NotificationCompat.EXTRA_TITLE));
@@ -48,10 +46,6 @@ class NotificationObject {
 
     public long getPostTime() {
         return postTime;
-    }
-
-    public String getAppName() {
-        return appName;
     }
 
     public String getTitle() {

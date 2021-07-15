@@ -1,6 +1,5 @@
 package com.mogli.notificationlog2;
 
-
 import android.app.AlertDialog;
 import android.app.LoaderManager;
 import android.content.ComponentName;
@@ -57,12 +56,11 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
         listView.setAdapter(notifCursorAdaptor);
         registerForContextMenu(listView);
         listView.setOnItemClickListener((parent, view, position, id) -> {
-            TextView text = view.findViewById(R.id.app_text);
-            Log.e(TAG, "text: " + text.getText().toString());
-            if (text.getMaxLines() == 3)
-                text.setMaxLines(Integer.MAX_VALUE);
+            TextView textView = view.findViewById(R.id.text);
+            if (textView.getMaxLines() == 3)
+                textView.setMaxLines(Integer.MAX_VALUE);
             else
-                text.setMaxLines(3);
+                textView.setMaxLines(3);
         });
 
         getLoaderManager().initLoader(NOTIF_LOADER, null, this);
@@ -77,12 +75,11 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
         preferences.registerOnSharedPreferenceChangeListener(this);
     }
 
-
     private void doDeleteNotifOlderThanXdays(int deleteAfter) {
         long timeNow = System.currentTimeMillis();
         long inMilli30days = deleteAfter * 60 * 60 * 1000;
         long timeBefore30days = timeNow - inMilli30days;
-        String where = " timeinmilli < ? ";
+        String where = " postTime < ? ";
         String[] selectionArgs = new String[]{Long.toString(timeBefore30days)};
         int rowsDeleted = getContentResolver().delete(NotificationsContract.NotifEntry.CONTENT_URI, where, selectionArgs);
 //        Log.v("deleted : ", "" + rowsDeleted);
@@ -127,11 +124,11 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
     public Loader<Cursor> onCreateLoader(int id, Bundle args) {
         String[] projection = {
                 NotificationsContract.NotifEntry._ID,
-                NotificationsContract.NotifEntry.COLUMN_NOTIF_APP_NAME,
-                NotificationsContract.NotifEntry.COLUMN_NOTIF_APP_DATA_TITLE,
-                NotificationsContract.NotifEntry.COLUMN_NOTIF_APP_DATA_TEXT,
-                NotificationsContract.NotifEntry.COLUMN_NOTIF_APP_DATA_PACKAGE_NAME,
-                NotificationsContract.NotifEntry.COLUMN_NOTIF_APP_TIME_IN_MILLI};
+                NotificationsContract.NotifEntry.COLUMN_NOTIF_TITLE,
+                NotificationsContract.NotifEntry.COLUMN_NOTIF_TEXT,
+                NotificationsContract.NotifEntry.COLUMN_NOTIF_PACKAGE_NAME,
+                NotificationsContract.NotifEntry.COLUMN_NOTIF_POST_TIME
+        };
         return new CursorLoader(this, NotificationsContract.NotifEntry.CONTENT_URI, projection, null, null, NotificationsContract.NotifEntry._ID + " DESC");
     }
 
