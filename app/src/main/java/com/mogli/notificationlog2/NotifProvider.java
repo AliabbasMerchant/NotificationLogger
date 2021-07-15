@@ -29,7 +29,6 @@ public class NotifProvider extends ContentProvider {
         // should recognize. All paths added to the UriMatcher have a corresponding code to return
         // when a match is found.
 
-        // TODO: Add 2 content URIs to URI matcher
         sUriMatcher.addURI(NotificationsContract.CONTENT_AUTHORITY, NotificationsContract.PATH_NOTIFS, NOTIF);
         sUriMatcher.addURI(NotificationsContract.CONTENT_AUTHORITY, NotificationsContract.PATH_NOTIFS + "/#", NOTIF_ID);
     }

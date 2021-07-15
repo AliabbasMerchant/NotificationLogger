@@ -7,9 +7,4 @@
         app:showAsAction="never"
         android:orderInCategory="100"/>
 
-    <item android:title="Set an reminder"
-        android:id="@+id/set_an_reminder"
-        android:orderInCategory="99"
-        app:showAsAction="never"/>
-
 </menu>

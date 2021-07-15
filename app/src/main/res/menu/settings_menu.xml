@@ -2,11 +2,6 @@
 <menu xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <item android:title="Show all Reminders"
-        android:id="@+id/show_all_reminders"
-        app:showAsAction="never"
-        android:orderInCategory="98"/>
-
     <item android:title="Delete All Notifications"
         android:id="@+id/delete_all"
         app:showAsAction="never"

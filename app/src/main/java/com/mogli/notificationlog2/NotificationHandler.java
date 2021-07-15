@@ -4,8 +4,10 @@ import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.service.notification.StatusBarNotification;
+import android.util.Log;
 
 public class NotificationHandler {
+    private static final String TAG = "NotificationHandler";
 
     public static final String LOCK = "lock";
 
@@ -25,8 +27,8 @@ public class NotificationHandler {
         String appName = no.getAppName();
         String title = no.getTitle();
         String text = no.getText();
-        String time = utils.getTime(no.getSystemTime());
-        String date = utils.getDate(no.getSystemTime());
+        String time = Utils.getTime(no.getSystemTime());
+        String date = Utils.getDate(no.getSystemTime());
         String packageName = no.getPackageName();
         long timeInMillis = no.getSystemTime();
         String[] selectionArgs = new String[]{appName, text, title, time, date, packageName};
@@ -40,8 +42,10 @@ public class NotificationHandler {
                 NotificationsContract.NotifEntry.COLUMN_NOTIF_APP_DATA_TEXT,
                 NotificationsContract.NotifEntry.COLUMN_NOTIF_APP_DATA_PACKAGE_NAME};
         Cursor cursor = context.getContentResolver().query(NotificationsContract.NotifEntry.CONTENT_URI, projection, selection, selectionArgs, null);
-        if (cursor != null && cursor.getCount() > 0)
+        if (cursor != null && cursor.getCount() > 0) {
+            Log.e(TAG, "handlePosted: Exists", null);
             return;
+        }
         synchronized (LOCK) {
             ContentValues values = new ContentValues();
             values.put(NotificationsContract.NotifEntry.COLUMN_NOTIF_APP_NAME, appName);

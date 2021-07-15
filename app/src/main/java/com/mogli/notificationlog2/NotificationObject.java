@@ -34,13 +34,13 @@ class NotificationObject {
         when = notification.when;
 
         Bundle extras = NotificationCompat.getExtras(notification);
-        appName = utils.getAppNameFromPackage(context, packageName, false);
+        appName = Utils.getAppNameFromPackage(context, packageName, false);
 
         if (extras != null) {
-            title = utils.nullToEmptyString(extras.getCharSequence(NotificationCompat.EXTRA_TITLE));
-            text = utils.nullToEmptyString(extras.getCharSequence(NotificationCompat.EXTRA_TEXT));
-            extraText = utils.nullToEmptyString(extras.getCharSequence(Notification.EXTRA_SUB_TEXT));
-            textBig = utils.nullToEmptyString(extras.getCharSequence(NotificationCompat.EXTRA_BIG_TEXT));
+            title = Utils.nullToEmptyString(extras.getCharSequence(NotificationCompat.EXTRA_TITLE));
+            text = Utils.nullToEmptyString(extras.getCharSequence(NotificationCompat.EXTRA_TEXT));
+            extraText = Utils.nullToEmptyString(extras.getCharSequence(Notification.EXTRA_SUB_TEXT));
+            textBig = Utils.nullToEmptyString(extras.getCharSequence(NotificationCompat.EXTRA_BIG_TEXT));
 
 //            Log.v("NotifObject","title :" + title +"\n"
 //                     + "text :" + text + "\n"

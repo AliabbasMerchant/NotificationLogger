@@ -1,87 +1,80 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/item"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:orientation="vertical">
+    android:background="?android:selectableItemBackground"
+    android:orientation="horizontal"
+    android:padding="16dp">
+
+    <ImageView
+        android:id="@+id/appIcon"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_marginEnd="16dp"
+        android:contentDescription="Icon"
+        android:src="@mipmap/ic_launcher"
+        android:transitionName="icon" />
 
     <LinearLayout
-        android:id="@+id/item"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="?android:selectableItemBackground"
-        android:orientation="horizontal"
-        android:padding="16dp">
-
-        <ImageView
-            android:id="@+id/appIcon"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
-            android:layout_marginEnd="16dp"
-            android:contentDescription="Icon"
-            android:src="@mipmap/ic_launcher"
-            android:transitionName="icon" />
+        android:orientation="vertical">
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-
-                <TextView
-                    android:id="@+id/app_name"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="4dp"
-                    android:layout_weight="2.5"
-                    android:ellipsize="end"
-                    android:lines="1"
-                    android:text="name"
-                    android:textColor="@color/colorText"
-                    android:textSize="16sp" />
-
-                <TextView
-                    android:id="@+id/time"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text="time"
-                    android:textColor="@color/colorTextMuted"
-                    android:textSize="14sp" />
-
-                <TextView
-                    android:id="@+id/date"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text="date"
-                    android:textColor="@color/colorTextMuted"
-                    android:textSize="14sp" />
-            </LinearLayout>
-
+            android:layout_height="wrap_content">
 
             <TextView
-                android:id="@+id/app_title"
-                android:layout_width="match_parent"
+                android:id="@+id/app_name"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
+                android:layout_marginBottom="4dp"
+                android:layout_weight="2.5"
                 android:ellipsize="end"
-                android:text="title"
-                android:textColor="@color/colorTextMuted"
-                android:textSize="14sp"
-                android:typeface="monospace" />
+                android:lines="1"
+                android:text="name"
+                android:textColor="@color/colorText"
+                android:textSize="16sp" />
 
             <TextView
-                android:id="@+id/app_text"
-                android:layout_width="match_parent"
+                android:id="@+id/time"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:maxLines="3"
-                android:text="text"
+                android:layout_weight="1"
+                android:text="time"
                 android:textColor="@color/colorTextMuted"
                 android:textSize="14sp" />
 
+            <TextView
+                android:id="@+id/date"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="date"
+                android:textColor="@color/colorTextMuted"
+                android:textSize="14sp" />
         </LinearLayout>
-    </LinearLayout>
 
+
+        <TextView
+            android:id="@+id/app_title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ellipsize="end"
+            android:text="title"
+            android:textColor="@color/colorTextMuted"
+            android:textSize="14sp"
+            android:typeface="monospace" />
+
+        <TextView
+            android:id="@+id/app_text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:maxLines="3"
+            android:text="text"
+            android:textColor="@color/colorTextMuted"
+            android:textSize="14sp" />
+
+    </LinearLayout>
 </LinearLayout>

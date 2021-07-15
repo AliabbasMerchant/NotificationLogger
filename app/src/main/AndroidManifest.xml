@@ -5,9 +5,6 @@
 
     <dist:module dist:instant="true" />
 
-    <uses-permission android:name="android.permission.READ_CALENDAR" />
-    <uses-permission android:name="android.permission.WRITE_CALENDAR" />
-
     <application
         android:allowBackup="true"
         android:icon="@mipmap/honey_round"
@@ -22,14 +19,6 @@
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".SettingsActivity" />
-        </activity>
-        <activity
-            android:name=".ReminderActivity"
-            android:label="Set Reminder"
-            android:parentActivityName=".MainActivity">
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value=".ReminderActivity" />
         </activity>
         <activity
             android:name=".MainActivity"

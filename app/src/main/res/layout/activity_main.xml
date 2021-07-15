@@ -9,8 +9,7 @@
     <ListView
         android:id="@+id/list_view_notif"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:padding="18dp" />
+        android:layout_height="match_parent" />
 
     <TextView
         android:id="@+id/empty_subtitle_text"
@@ -20,7 +19,7 @@
         android:layout_centerHorizontal="true"
         android:fontFamily="sans-serif"
         android:paddingTop="8dp"
-        android:text="No notifications logged cuurently"
+        android:text="No notifications logged currently"
         android:textAppearance="?android:textAppearanceSmall"
         android:textColor="#A2AAB0" />
 

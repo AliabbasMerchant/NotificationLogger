@@ -1,7 +1,6 @@
 package com.mogli.notificationlog2;
 
 
-import android.Manifest;
 import android.app.AlertDialog;
 import android.app.LoaderManager;
 import android.content.ComponentName;
@@ -16,7 +15,6 @@ import android.content.pm.PackageManager;
 import android.database.Cursor;
 import android.net.Uri;
 import android.os.Bundle;
-import android.provider.CalendarContract;
 import android.provider.Settings;
 import android.view.ContextMenu;
 import android.view.Menu;
@@ -30,26 +28,19 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.app.ActivityCompat;
-import androidx.core.content.ContextCompat;
 import androidx.preference.PreferenceManager;
 
 public class MainActivity extends AppCompatActivity implements LoaderManager.LoaderCallbacks<Cursor>, SharedPreferences.OnSharedPreferenceChangeListener {
 
     private static final int NOTIF_LOADER = 1;
-    private NotifDbHelper notifDbHelper;
     private NotifCursorAdaptor notifCursorAdaptor;
     private ListView listView;
-
-    private boolean deleteNotifAfter30days;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         checkNotifPermission();
-        checkCalendarPermissions();
-
 
         getNotifPreferences();
 
@@ -57,7 +48,6 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
 
         listView = findViewById(R.id.list_view_notif);
         notifCursorAdaptor = new NotifCursorAdaptor(this, null);
-        notifDbHelper = new NotifDbHelper(this);
 
         View emptyView = findViewById(R.id.empty_subtitle_text);
         listView.setEmptyView(emptyView);
@@ -82,27 +72,17 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
         getLoaderManager().initLoader(NOTIF_LOADER, null, this);
     }
 
-    private void checkCalendarPermissions() {
-        if (ContextCompat.checkSelfPermission(this, Manifest.permission.READ_CALENDAR) != PackageManager.PERMISSION_GRANTED
-                || ContextCompat.checkSelfPermission(this, Manifest.permission.WRITE_CALENDAR) != PackageManager.PERMISSION_GRANTED) {
-            ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.READ_CALENDAR, Manifest.permission.WRITE_CALENDAR}, 5);
-        }
-    }
-
     private void getNotifPreferences() {
-//        Log.v("main", "notifprefer");
         SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(this);
 
         String deleteAfter = preferences.getString("deletenotifafter", getResources().getString(R.string.pref_value_one_week));
         int deleteAfterInt = Integer.parseInt(deleteAfter);
         doDeleteNotifOlderThanXdays(deleteAfterInt);
-//        Log.v("main"," " + deleteAfter);
         preferences.registerOnSharedPreferenceChangeListener(this);
     }
 
 
     private void doDeleteNotifOlderThanXdays(int deleteAfter) {
-//        Log.v("main", "dodelete");
         long timeNow = System.currentTimeMillis();
         long inMilli30days = deleteAfter * 60 * 60 * 1000;
         long timeBefore30days = timeNow - inMilli30days;
@@ -124,25 +104,17 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
         boolean isNotificationServiceRunning = isNotificationServiceRunning();
         if (!isNotificationServiceRunning) {
             AlertDialog.Builder builder = new AlertDialog.Builder(this);
-            builder.setMessage("Enable Notfication Access").setTitle("Enable permissions");
-            builder.setMessage("Enable Notfication Access or the notifications won't be Logged")
+            builder
+                    .setTitle("Enable Notification Access")
+                    .setMessage("Enable Notification Access or the Notifications won't be Logged")
                     .setCancelable(false)
                     .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
                         public void onClick(DialogInterface dialog, int id) {
                             dialog.cancel();
                             startActivity(new Intent(Settings.ACTION_NOTIFICATION_LISTENER_SETTINGS));
-
-
-                        }
-                    })
-                    .setNegativeButton("No", new DialogInterface.OnClickListener() {
-                        public void onClick(DialogInterface dialog, int id) {
-                            //  Action for 'NO' Button
-
                         }
                     });
             AlertDialog alert = builder.create();
-            alert.setTitle("Enable Notification Access");
             alert.show();
         }
     }
@@ -197,22 +169,13 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
             Intent settingsActivity = new Intent(this, SettingsActivity.class);
             startActivity(settingsActivity);
             return true;
-        } else if (id == R.id.show_all_reminders) {
-//            Log.v("menu", "show all remiders");
-            Uri.Builder builder = CalendarContract.CONTENT_URI.buildUpon();
-            builder.appendPath("time");
-            ContentUris.appendId(builder, System.currentTimeMillis());
-            Intent intent = new Intent(Intent.ACTION_VIEW)
-                    .setData(builder.build());
-            startActivity(intent);
-            return true;
         }
         return super.onOptionsItemSelected(item);
     }
 
     private void alertForDeletingAllNotifications() {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setMessage("Delete all notification currently logged?")
+        builder.setMessage("Delete all currently logged notifications?")
                 .setCancelable(false)
                 .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int id) {
@@ -223,10 +186,7 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
                     }
                 })
                 .setNegativeButton("No", new DialogInterface.OnClickListener() {
-                    public void onClick(DialogInterface dialog, int id) {
-                        //  Action for 'NO' Button
-
-                    }
+                    public void onClick(DialogInterface dialog, int id) {}
                 });
         AlertDialog alert = builder.create();
         alert.setTitle("Delete All Notifications");
@@ -243,14 +203,7 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
         long currNotifId = cursor.getInt(cursor.getColumnIndex(NotificationsContract.NotifEntry._ID));
 //        Log.v("notif id : " , ""+currNotifId + " text: " + cursor.getString(cursor.getColumnIndex(NotificationsContract.NotifEntry.COLUMN_NOTIF_APP_DATA_TEXT)));
 
-        if (menuItemId == R.id.set_an_reminder) {
-            Uri currNotifUri = ContentUris.withAppendedId(NotificationsContract.NotifEntry.CONTENT_URI, currNotifId);
-//            Log.v("currNotifUri",""+ currNotifUri.toString() + "\n" + currNotifUri);
-            Intent setReminder = new Intent(MainActivity.this, ReminderActivity.class);
-            setReminder.setData(currNotifUri);
-            startActivity(setReminder);
-            return true;
-        } else if (menuItemId == R.id.delete_current) {
+        if (menuItemId == R.id.delete_current) {
             deleteCurrentNotif(currNotifId);
             return true;
         }

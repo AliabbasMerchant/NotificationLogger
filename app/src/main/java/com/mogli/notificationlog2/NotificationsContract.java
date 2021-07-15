@@ -30,8 +30,6 @@ public final class NotificationsContract {
 
         public final static String TABLE_NAME = "notifications";
 
-        public final static String TABLE_NAME_APP_PREF = "apppreference";
-
         public final static String _ID = BaseColumns._ID;
 
         public final static String COLUMN_NOTIF_APP_NAME = "name";
