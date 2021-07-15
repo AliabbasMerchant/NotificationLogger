@@ -30,16 +30,13 @@ public class NotifCursorAdaptor extends CursorAdapter {
     @Override
     public void bindView(View view, Context context, Cursor cursor) {
         TextView appName = view.findViewById(R.id.app_name);
-        TextView time = view.findViewById(R.id.time);
-        TextView date = view.findViewById(R.id.date);
+        TextView datetime = view.findViewById(R.id.datetime);
         TextView appTitle = view.findViewById(R.id.app_title);
         TextView appText = view.findViewById(R.id.app_text);
         ImageView imageView = view.findViewById(R.id.appIcon);
 
-//        int notifIdColumnIndex = cursor.getColumnIndex(NotificationsContract.NotifEntry.COLUMN_NOTIF_ID);
         int appNameColumnIndex = cursor.getColumnIndex(NotificationsContract.NotifEntry.COLUMN_NOTIF_APP_NAME);
-        int appTimeColumnIndex = cursor.getColumnIndex(NotificationsContract.NotifEntry.COLUMN_NOTIF_APP_DATA_TIME);
-        int appDateColumnIndex = cursor.getColumnIndex(NotificationsContract.NotifEntry.COLUMN_NOTIF_APP_DATA_DATE);
+        int appTimeColumnIndex = cursor.getColumnIndex(NotificationsContract.NotifEntry.COLUMN_NOTIF_APP_TIME_IN_MILLI);
         int appTitleColumnIndex = cursor.getColumnIndex(NotificationsContract.NotifEntry.COLUMN_NOTIF_APP_DATA_TITLE);
         int appTextColumnIndex = cursor.getColumnIndex(NotificationsContract.NotifEntry.COLUMN_NOTIF_APP_DATA_TEXT);
         int appPackageNameColumnIndex = cursor.getColumnIndex(NotificationsContract.NotifEntry.COLUMN_NOTIF_APP_DATA_PACKAGE_NAME);
@@ -53,8 +50,7 @@ public class NotifCursorAdaptor extends CursorAdapter {
         }
 
         appName.setText(cursor.getString(appNameColumnIndex));
-        time.setText(cursor.getString(appTimeColumnIndex));
-        date.setText(cursor.getString(appDateColumnIndex));
+        datetime.setText(Utils.getDateTime(cursor.getLong(appTimeColumnIndex)));
         appTitle.setText(cursor.getString(appTitleColumnIndex));
         appText.setText(cursor.getString(appTextColumnIndex));
     }

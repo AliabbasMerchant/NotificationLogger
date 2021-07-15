@@ -37,8 +37,6 @@ public final class NotificationsContract {
         public final static String COLUMN_NOTIF_APP_DATA_TEXT = "text";
 
         public final static String COLUMN_NOTIF_APP_DATA_TITLE = "title";
-        public final static String COLUMN_NOTIF_APP_DATA_TIME = "time";
-        public final static String COLUMN_NOTIF_APP_DATA_DATE = "date";
         public final static String COLUMN_NOTIF_APP_DATA_PACKAGE_NAME = "packagename";
         public final static String COLUMN_NOTIF_APP_TIME_IN_MILLI = "timeinmilli";
     }

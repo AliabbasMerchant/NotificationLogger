@@ -31,14 +31,8 @@ public class Utils {
         }
     }
 
-    public static String getTime(Long currentTimeMillis) {
-        DateFormat df = new SimpleDateFormat("HH:mm:ss");
-        Date resultDate = new Date(currentTimeMillis);
-        return df.format(resultDate);
-    }
-
-    public static String getDate(Long currentTimeMillis) {
-        DateFormat df = new SimpleDateFormat("d MMM yyyy");
+    public static String getDateTime(Long currentTimeMillis) {
+        DateFormat df = new SimpleDateFormat("d MMM yyyy HH:mm:ss");
         Date resultDate = new Date(currentTimeMillis);
         return df.format(resultDate);
     }

@@ -38,20 +38,11 @@
                 android:textSize="16sp" />
 
             <TextView
-                android:id="@+id/time"
+                android:id="@+id/datetime"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="time"
-                android:textColor="@color/colorTextMuted"
-                android:textSize="14sp" />
-
-            <TextView
-                android:id="@+id/date"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="date"
+                android:text="datetime"
                 android:textColor="@color/colorTextMuted"
                 android:textSize="14sp" />
         </LinearLayout>

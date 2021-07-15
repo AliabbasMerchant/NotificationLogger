@@ -20,8 +20,6 @@ public class NotifDbHelper extends SQLiteOpenHelper {
                 + NotificationsContract.NotifEntry.COLUMN_NOTIF_APP_NAME + " TEXT , "
                 + NotificationsContract.NotifEntry.COLUMN_NOTIF_APP_DATA_TITLE + " TEXT, "
                 + NotificationsContract.NotifEntry.COLUMN_NOTIF_APP_DATA_TEXT + " TEXT , "
-                + NotificationsContract.NotifEntry.COLUMN_NOTIF_APP_DATA_TIME + " TEXT , "
-                + NotificationsContract.NotifEntry.COLUMN_NOTIF_APP_DATA_DATE + " TEXT , "
                 + NotificationsContract.NotifEntry.COLUMN_NOTIF_APP_DATA_PACKAGE_NAME + " TEXT , "
                 + NotificationsContract.NotifEntry.COLUMN_NOTIF_APP_TIME_IN_MILLI + " INTEGER );";
 

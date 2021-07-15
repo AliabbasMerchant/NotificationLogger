@@ -132,13 +132,10 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
         String[] projection = {
                 NotificationsContract.NotifEntry._ID,
                 NotificationsContract.NotifEntry.COLUMN_NOTIF_APP_NAME,
-                NotificationsContract.NotifEntry.COLUMN_NOTIF_APP_DATA_TIME,
-                NotificationsContract.NotifEntry.COLUMN_NOTIF_APP_DATA_DATE,
                 NotificationsContract.NotifEntry.COLUMN_NOTIF_APP_DATA_TITLE,
                 NotificationsContract.NotifEntry.COLUMN_NOTIF_APP_DATA_TEXT,
                 NotificationsContract.NotifEntry.COLUMN_NOTIF_APP_DATA_PACKAGE_NAME,
                 NotificationsContract.NotifEntry.COLUMN_NOTIF_APP_TIME_IN_MILLI};
-
         return new CursorLoader(this, NotificationsContract.NotifEntry.CONTENT_URI, projection, null, null, NotificationsContract.NotifEntry._ID + " DESC");
     }
 
